@@ -1,0 +1,36 @@
+#include <stack>
+#include <iostream>
+using namespace std;
+
+int main() {
+    stack<int> st1,st2;
+    int n;
+    cin >> n;
+    while(n--)
+    {
+        int a, x;
+        cin >> a;
+        if(a == 1)
+        {
+            cin >> x;
+            st2.push(x);
+        }    
+        else 
+        {
+           if(st1.empty())
+           { 
+               while(!st2.empty())
+               {
+                   st1.push(st2.top());
+                   st2.pop();
+               }   
+            }    
+           if(!st1.empty())
+           {
+               if(a == 2) st1.pop();
+               if(a == 3) cout << st1.top() << endl;
+           }  
+        }   
+    }    
+    return 0;
+}
