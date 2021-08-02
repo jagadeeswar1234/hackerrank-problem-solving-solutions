@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+#include <stack>
+
+using namespace std;
+
+bool func(string s)
+{
+    long unsigned int i;
+    stack <char> st;
+    char x;
+    for(i=0;i<s.size();i++)
+    {
+      if(s[i]=='{' || s[i]=='(' || s[i]=='['){
+        st.push(s[i]);
+        continue;
+      }
+      if(st.empty())
+        return 0;
+      switch(s[i])
+      {
+        case ')':
+          x=st.top();
+          st.pop();
+          if(x!='(')
+            return false;
+          break;
+          
+        case '}':
+          x=st.top();
+          st.pop();
+          if(x!='{')
+            return false;
+          break;
+          
+        case ']':
+          x=st.top();
+          st.pop();
+          if(x!='[')
+            return false;
+          break;
+      }
+    }
+    return st.empty();
+}
+
+int main()
+{
+  int n;
+  string s;
+  cin>>n;
+  while(n--)
+  {
+    cin>>s;
+    if(func(s))
+      printf("YES\n");
+    else
+      printf("NO\n");
+  }
+  return 0;
+}
